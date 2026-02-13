@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pixel Valentine Quest ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    background:#0f0f1b;
+    font-family:monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+}
+
+/* Pixel Background */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-image: radial-gradient(#ff4d88 2px, transparent 2px);
+    background-size:30px 30px;
+    opacity:0.2;
+}
+
+/* SCREEN FULL */
+.screen{
+    width:95%;
+    height:90%;
+    background:#16213e;
+    border:10px solid #ff4d88;
+    box-shadow:0 0 50px #ff4d88;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+/* TITLE */
+.title{
+    position:absolute;
+    top:20px;
+    font-size:40px;
+    color:#ff4d88;
+    text-shadow:3px 3px #000;
+}
+
+/* BUTTON */
+button{
+    padding:20px 40px;
+    font-size:22px;
+    background:#ff4d88;
+    border:none;
+    color:white;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+button:hover{
+    background:#ff7fb0;
+}
+
+/* ENVELOPE */
+.envelope{
+    width:350px;
+    height:230px;
+    background:#ff4d88;
+    border:8px solid white;
+    position:relative;
+    cursor:pointer;
+    margin-top:40px;
+}
+
+.flap{
+    width:350px;
+    height:160px;
+    background:#ff7fb0;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    position:absolute;
+    top:0;
+    left:0;
+    transform-origin:top;
+    transition:0.8s;
+}
+
+.open .flap{
+    transform:rotateX(180deg);
+}
+
+/* LETTER FULL */
+.letter{
+    position:absolute;
+    width:70%;
+    height:75%;
+    background:white;
+    color:#ff4d88;
+    border:10px solid #ff4d88;
+    padding:40px;
+    text-align:center;
+    font-size:22px;
+    transform:scale(0);
+    transition:0.6s;
+    overflow:auto;
+}
+
+.show{
+    transform:scale(1);
+}
+
+/* IMAGE */
+.letter img{
+    width:220px;
+    margin-bottom:20px;
+}
+
+/* HEARTS */
+.heart{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#ff4d88;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{ transform:translateY(-20px); opacity:1;}
+    100%{ transform:translateY(100vh); opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+
+<div class="title">💥 VALENTINE'S LETTER 💥</div>
+
+<button id="startBtn">TAP TAP</button>
+
+<div id="gameArea" style="display:none; flex-direction:column; align-items:center;">
+    <h2>Click The Envelope 💌</h2>
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+    </div>
+</div>
+
+<div class="letter" id="letter">
+    <img src="jeno.gif">
+    <p>
+    Hiya ada jeno
+    <br><br>
+    Happy Valentine Grace!!
+    <br><br>
+    Gatau kenapa kek kepikiran aja bikin ginian 
+    soalnya kalo ngasih coklat/Rosario lagi mah jauh atuh kudu ke Jakardah (ATAU JANGAN" KM DI BDG 🤔)
+    jujur bingung mau nulis apa lagi enih, bikinnya malem malem soalnya otaknya dah buntu
+    intinya kacamata mama udahlah~ apasi? yaudah lah ya intinya happy valentine buat kamu 
+    semoga selalu mendapatkan kasih sayang yang tulus dari orang orang terdekat kamu di Bandung maupun di Bogor lah ya
+    sehat sehat juga yaa
+    <br><br>
+    SEE YAA di BDG,Bogor atau Jogja yeahhh
+    </p>
+</div>
+
+</div>
+
+<script>
+
+const startBtn = document.getElementById("startBtn");
+const gameArea = document.getElementById("gameArea");
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("letter");
+
+startBtn.onclick = function(){
+    startBtn.style.display="none";
+    gameArea.style.display="flex";
+}
+
+envelope.onclick = function(){
+    envelope.classList.add("open");
+    letter.classList.add("show");
+    createHearts();
+}
+
+function createHearts(){
+    for(let i=0;i<30;i++){
+        let heart=document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left=Math.random()*100+"%";
+        heart.style.animationDuration=(Math.random()*3+3)+"s";
+        document.body.appendChild(heart);
+    }
+}
+
+</script>
+
+</body>
+</html>
